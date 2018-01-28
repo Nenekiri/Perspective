@@ -2,12 +2,15 @@
 using System.Collections;
 using UnityEngine.UI; 
 
-public class InputTerminalColors : MonoBehaviour {
+public class InputTerminalFinal : MonoBehaviour {
+
 
     //set variables for the walls for the interact to turn them on and off
     public GameObject frontWall;
-    public GameObject sectionFrontLeft;
-    public GameObject sectionFrontRight;
+    public GameObject bigDoor; 
+
+    //public GameObject sectionFrontLeft;
+    //public GameObject sectionFrontRight;
 
     public GameObject interactText;
     private bool interactable = false;
@@ -29,15 +32,16 @@ public class InputTerminalColors : MonoBehaviour {
     //sound for pop-up
     public AudioClip popup;
 
+
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         //hide the input text
         interactText.SetActive(false);
 
         //hide the sections of the front wall
-        sectionFrontLeft.SetActive(false);
-        sectionFrontRight.SetActive(false);
+        //sectionFrontLeft.SetActive(false);
+        //sectionFrontRight.SetActive(false);
 
         //get the audiosource
         audios = this.gameObject.GetComponent<AudioSource>();
@@ -46,9 +50,9 @@ public class InputTerminalColors : MonoBehaviour {
         inputTextPanel.SetActive(false);
 
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         //check to see if the stand can be interacted with
         if (interactable)
@@ -98,15 +102,20 @@ public class InputTerminalColors : MonoBehaviour {
     public void ConfirmCode()
     {
 
-        if (inputText.text.ToLower() == "rgb" || inputText.text.ToLower() == "redgreenblue")
+        if (inputText.text.ToLower() == "the self is a lie you are the universe" || inputText.text.ToLower() == "theselfisalieyouaretheuniverse")
         {
             //play sound effect for opening doors or chime of being correct
             audios.PlayOneShot(good);
 
             //open up the front wall and hide the original wall
             frontWall.SetActive(false);
-            sectionFrontLeft.SetActive(true);
-            sectionFrontRight.SetActive(true);
+            bigDoor.SetActive(false);
+
+            //use the global variable to shut off the music
+            Globals.FinalDoorSolved = true; 
+
+            //sectionFrontLeft.SetActive(true);
+            //sectionFrontRight.SetActive(true);
 
             //close out modal after correct input is received
             CloseModal();

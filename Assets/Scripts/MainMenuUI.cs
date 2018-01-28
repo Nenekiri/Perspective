@@ -9,6 +9,7 @@ public class MainMenuUI : MonoBehaviour {
     {
         //Deletes the game's data and lets the player start fresh
         PlayerPrefs.DeleteAll();
+        Globals.FinalDoorSolved = false; 
         Application.LoadLevel("TestScene");
     }
 

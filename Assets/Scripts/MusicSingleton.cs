@@ -40,7 +40,22 @@ public class MusicSingleton : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+
+        if (Globals.FinalDoorSolved == true)
+        {
+            s.Stop();
+            StartCoroutine(DelayThenEnd(30.0f)); 
+        }
+
 	
 	}
+
+
+    IEnumerator DelayThenEnd(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Application.Quit();
+    }
+
 
 }//end of class

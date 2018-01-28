@@ -75,7 +75,7 @@ public class FirstTerminal : MonoBehaviour {
         audiosource.PlayOneShot(transmission);
         yield return new WaitForSeconds(delay);
         //OPEN UP THE TRANSMISSION
-        Application.OpenURL("www.google.com");
+        Application.OpenURL("https://nenekiri.itch.io/perspectivelast-transmission");
     }
 
 }//end of FirstTerminal class
