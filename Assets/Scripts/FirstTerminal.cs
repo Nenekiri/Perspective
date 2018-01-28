@@ -9,11 +9,19 @@ public class FirstTerminal : MonoBehaviour {
     //set variables for the walls for the interact to turn them on and off
     public GameObject frontWall;
     public GameObject sectionLeft;
-    public GameObject sectionRight; 
+    public GameObject sectionRight;
+
+    //create an AudioSource for the transmission sound
+    public AudioSource audiosource; 
+
+    //sound for the transmission going through
+    public AudioClip transmission; 
 
 	// Use this for initialization
 	void Start ()
     {
+        audiosource = GetComponent<AudioSource>(); 
+
         interactText.SetActive(false);
         sectionLeft.SetActive(false);
         sectionRight.SetActive(false); 
@@ -28,11 +36,10 @@ public class FirstTerminal : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("The interact button was hit successfully!"); 
-                //play a sound effect here
+                Debug.Log("The interact button was hit successfully!");
 
-                //OPEN UP THE TRANSMISSION
-                Application.OpenURL("www.google.com");
+
+                StartCoroutine(DelayThenOpen(2.5f));  
 
                 //open up the wall and hide the original wall
                 frontWall.SetActive(false); 
@@ -61,5 +68,14 @@ public class FirstTerminal : MonoBehaviour {
             interactable = false; 
         }
     }
-     
+
+
+    IEnumerator DelayThenOpen(float delay)
+    {
+        audiosource.PlayOneShot(transmission);
+        yield return new WaitForSeconds(delay);
+        //OPEN UP THE TRANSMISSION
+        Application.OpenURL("www.google.com");
+    }
+
 }//end of FirstTerminal class
